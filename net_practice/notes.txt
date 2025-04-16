@@ -1,0 +1,46 @@
+sources : https://www.freecodecamp.org/news/subnet-cheat-sheet-24-subnet-mask-30-26-27-29-and-other-ip-address-cidr-network-references/
+
+level 1 : host my PC needs to communicate with host my little brother's computer :
+so A to B IP of A will be B's IP + 1
+host my Mac needs to communicate with host my little sister's computer :
+same here so B's IP will be A's - 1;
+
+level 2: host Computer B needs to communicate with host Computer A :
+B -> A; B's IP = 222; A's IP = 221
+so B to A, the mask need to be the same and A's IP will be B's - 1
+host Computer D needs to communicate with host Computer C :
+D -> C; D's IP = 2; A's IP = 1
+mask /30 = 11111111.11111111.11111111.11111100 it the last 2 bits for "host addressing"
+so (conventionally we take 42 but other could have works) C's IP = 42.42.42.1 and D's gonna be C's + 1 as before
+
+level 3: host A needs to communicate with host B but there is a switch :
+A -> B; A's IP = 104.198.208.125; B's IP = 104.198.208.124
+A -> C; A's IP = 104.198.208.125; C's IP = 104.198.208.123
+B -> C; B's IP = 104.198.208.124; C's IP = 104.198.208.123
+
+level 4: router :
+A -> B; A's IP = 116.116.117.132; B's IP = 116.116.117.131 
+A's Mask = 255.255.255.240; B's Mask = 255.255.255.240
+A -> R1; A's IP = 116.116.117.132; R1's IP = 116.116.117.130
+A's Mask = 255.255.255.240; R1's Mask = 255.255.255.240
+B -> R1; B's IP = 116.116.117.131; R1's IP = 116.116.117.130
+B's Mask = 255.255.255.240; R1's Mask = 255.255.255.240
+
+level 5: The Mighty Router
+A -> R1; A's IP = 51.248.13.125; R1's IP = 51.248.13.126 *
+A's Mask = 255.255.255.128; R1's Mask = 255.255.255.128
+B -> R2; B's IP = 134.201.242.255; R2's IP = 134.201.242.254
+B's Mask = 255.255.192.0; R2's Mask = 255.255.192.0
+A -> B; A's IP = 116.116.117.132; B's IP = 116.116.117.131 
+A's Mask = 255.255.255.240; B's Mask = 255.255.255.240
+A's routes : default ==> 51.248.13.126
+B's routes : default ==> 134.201.242.254
+from what i understand A's IP depend on routes
+
+level 6: host webserv.non-real.com needs to communicate with interface Somewhere on the Net :
+internet I: Internet
+Routes :
+107.200.10.0/0 => 163.172.250.12
+src : screenshort
+
+level 7: src : screeshot
